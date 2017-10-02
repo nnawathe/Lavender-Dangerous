@@ -11,18 +11,33 @@
     <!--Bootstrap-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     
     <!--Font Awesome-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
     <!--style-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+    .carousel{
+        background: #581845;
+        margin-top: 20px;
+    }
+    .carousel .item{
+        min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+    }
+    .carousel .item img{
+        margin: 0 auto; /* Align slide image horizontally center */
+    }
+    .bs-example{
+        margin: 20px;
+    }
+    </style>
     
     <!--JS-->
-    <script src="script.js"></script>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
     
 
@@ -65,10 +80,12 @@
           <li class="nav-item active">
             <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item">
             <a class="nav-link dropdown-toggle" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown08">
-              <a class="dropdown-item" href="product.html">Toilet Paper</a>
+              <a class="dropdown-item" href="#">A</a>
+              <a class="dropdown-item" href="#">B</a>
+              <a class="dropdown-item" href="#">C</a>
             </div>
           </li>
           <li class="nav-item">
@@ -90,7 +107,55 @@
   </div>
 </div>
     
-    
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Carousel indicators -->
+          <ol class="carousel-indicators">
+              <li data-target="#myCarousel" style="background-color:#581845" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" style="background-color:#581845" data-slide-to="1"></li>
+              <li data-target="#myCarousel" style="background-color:#581845" data-slide-to="2"></li>
+              <li data-target="#myCarousel" style="background-color:#581845" data-slide-to="3"></li>
+          </ol>   
+          <!-- Wrapper for carousel items -->
+          <div class="carousel-inner">
+              <div class="item active">
+                  <img src="images/item1.jpg" alt="First Slide">
+                  <div class="carousel-caption">
+                    <h3 style="color:#581845">Toilet Paper</h3>
+                    <p style="color:#581845">10,000 rolls</p>
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="images/item2.jpg" alt="Second Slide">
+                  <div class="carousel-caption">
+                    <h3 style="color:#581845">Spaghetti</h3>
+                    <p style="color:#581845">500lbs</p>
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="images/item3.jpg" alt="Third Slide">
+                  <div class="carousel-caption">
+                    <h3 style="color:#581845">Batteries</h3>
+                    <p style="color:#581845">800 packs of 24</p>
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="images/item4.jpg" alt="Third Slide">
+                  <div class="carousel-caption">
+                    <h3 style="color:#581845">Toothpaste</h3>
+                    <p style="color:#581845">a large amount</p>
+                  </div>
+              </div>
+          </div>
+          <!-- Carousel controls -->
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+      </div>    
  
     
     </body>
