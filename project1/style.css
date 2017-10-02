@@ -10,6 +10,6 @@ li {
 	font-style: italic;
 }
 
-.navbar .navbar-expand-lg .navbar-dark{
-	background-color:red;
+.navbar{
+	margin-bottom:0px;
 }
