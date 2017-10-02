@@ -21,10 +21,19 @@ div img {
 }
 
 .prod-reviews{
-	padding-top:3em;
-	padding-bottom:3em;
+	margin-top:3em;
+	margin-bottom:3em;
+	background-color:lightgray;
 }
 
 .prod-quantity{
 	width:3em;
+}
+
+h5{
+	display:inline-block;
+}
+
+.review-time{
+	
 }
