@@ -37,3 +37,7 @@ h5{
 .review-time{
 	
 }
+
+.review-content+p {
+	font-style: italic;
+}
