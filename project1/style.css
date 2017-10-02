@@ -1,5 +1,13 @@
 li {
-	background-color: rgb(62, 182, 62);
+	background-color: rgba(62, 62, 182, 0.5);
+}
+
+.nav-link {
+	font-family: serif;
+}
+
+.form-control.mr-sm-2 {
+	font-style: italic;
 }
 
 img {
