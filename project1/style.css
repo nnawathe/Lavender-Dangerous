@@ -1,11 +1,15 @@
 li {
-	background-color: rgba(62, 62, 182, 0.5);
+	background-color: rgba(62, 62, 182);
 }
 
 .nav-link {
-	font-family: serif;
+	font-family: sans-serif;
 }
 
 .form-control.mr-sm-2 {
 	font-style: italic;
+}
+
+.navbar .navbar-expand-lg .navbar-dark{
+	background-color:red;
 }
