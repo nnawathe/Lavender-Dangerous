@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    
+
     <!--Responsive viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>weBulk - BulkR Up Collectively</title>
@@ -14,28 +14,28 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    
+
     <!--Font Awesome-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <!--style-->
     <link rel="stylesheet" type="text/css" href="style.css">
-    
+        <link rel="stylesheet" type="text/css" href="account.css">
     <!--JS-->
     <script src="script.js"></script>
 
-    
+
 
 </head>
 
 <body>
-    
+
 <!--Sticky navbar-->
 <nav class="navbar sticky-top navbar-light" style="background-color: cornflowerblue">
   <a class="navbar-brand" href="index.html">
     <img src="images/logo.png" width="194" height="74" class="d-inline-block align-top" alt="" width=60 height=40>
   </a>
-    
+
     <!--Search Bar-->
     <nav class="navbar navbar-light" style="background-color: cornflowerblue">
   <a class="navbar-brand"></a>
@@ -45,15 +45,15 @@
   </form>
 </nav>
     <ul class="navbar-right list-inline">
-    <li class="list-inline-item"><a href="#" class="btn btn-info btn-lg">
+    <li class="list-inline-item"><a href="cart.html" class="btn btn-info btn-lg">
           <span class="fa fa-shopping-cart"></span>
         </a></li>
     <li class=list-inline-item><a href="account.html" class="btn btn-info btn-lg">
           <span class="fa fa-user"></span> Account
         </a></li>
         </ul>
-    
-   
+
+
 </nav>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rebeccapurple">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,13 +85,66 @@
 
 <div class="container-fluid">
   <div class="row">
+    <div class ="col-sm-3 item">
+      <h5>Items you may like</h5>
+      <div class ="col-sm-12">
+        <h11>Nothing to Show</h11>
+      </div>
+    </div>
+    <div class ="col-sm-6">
+      <div class = "col-sm-12 account">
+        <h12>Your Account</h1>
+          <div class ="col-sm-12">
+            <h8><a href="#">Settings</a></h8>
+          </div>
+          <div class ="col-sm-12">
+            <h8><a href="#">Preferences</a></h9>
+          </div>
+          <div class ="col-sm-12">
+            <h8><a href="#">Terms and Conditions</a></h8>
+          </div>
+      </div>
+      <div class = "col-sm-12 favs">
+        <h12>Favorites List</h7>
+        <div class ="col-sm-12 prod">
+          <h2>Scott 1000 Toilet Paper</h2>
+        </div>
+        <div class = "col-sm-12">
+          <a href="product.html"><img src ="images/scott1000.png" /></a>
+    </div>
+      </div>
+      <div class = "col-sm-12 reqs">
+        <h12>Your Requests</h8>
+        <div class = "col-sm-12">
+          <p><br><strong>You requested:</strong><br>
+     (1 days ago)<br>
+     Name: Toilet paper<br>
+     Description: Toilet paper.<br>
+     Cost: $3.99</p>
+        </div>
+      </div>
 
+    </div>
+    <div class= "col-sm-3 cart">
+      <h2>Items in Cart</h2>
+      <div class ="col-sm-12 prod">
+        <h2>Scott 1000 Toilet Paper</h2>
+      </div>
+      <div class = "col-sm-12">
+        <img src ="images/scott1000.png" />
+  </div>
+  <div class ="col-sm-12">
+    <h3>Unit Price: $3.99</h3>
+    <h4>Quantity: 2</h4>
+    <button class="check-btn">Checkout!</button>
   </div>
 </div>
-    
-    
- 
-    
+</div>
+</div>
+
+
+
+
     </body>
 
 

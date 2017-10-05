@@ -4,37 +4,37 @@ div img {
     max-height: 100%;
 }
 
-.prod-sidebar{
+.item{
 	padding:2em;
 	border-right:1px solid;
 }
 
-.main-row{
+.row{
     height:100%;
 }
 
-.prod-row{
-	padding:5em;
+.reqs{
+	padding:3em;
 }
-.prod-title{
+.favs{
+	padding:3em;
+}
+.account{
+	padding:3em;
+}
+.cart{
+  border-left: 1px solid;
 	padding-top:3em;
 	padding-bottom:3em;
 }
 
-.prod-reviews{
-	margin-top:3em;
-	margin-bottom:3em;
-	background-color:lightgray;
-}
 
 .prod-quantity{
 	width:3em;
 }
-
+h12{
+  font-size: 1.25em;
+}
 h5{
 	display:inline-block;
-}
-
-.review-time{
-	
 }
