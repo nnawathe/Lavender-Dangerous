@@ -4,6 +4,29 @@ from django.db import models
 
 import uuid # Required for unique products
 
+class Category(models.Model):
+    """
+    A typical class defining a model, derived from the Model class.
+    """
+    name = models.CharField(max_length=200, help_text="Enter Product Name")
+
+    # Metadata
+    class Meta: 
+        ordering = ["name"]
+
+    # Methods
+    def get_absolute_url(self):
+         """
+         Returns the url to access a particular instance of MyModelName.
+         """
+         return reverse('category', args=[str(self.id)])
+    
+    def __str__(self):
+        """
+        String for representing the MyModelName object (in Admin site etc.)
+        """
+        return self.name
+
 class Product(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -13,6 +36,7 @@ class Product(models.Model):
     price = models.FloatField(default=None)
     quantity = models.IntegerField(default=None)
     description = models.TextField(max_length=2000, help_text="Enter Product Description")
+    category = models.ManyToManyField(Category, help_text="Select a category")
     image = models.CharField(max_length=200, help_text="Enter Image Path")
     
 
@@ -32,30 +56,13 @@ class Product(models.Model):
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.name
-		
-class Category(models.Model):
-    """
-    A typical class defining a model, derived from the Model class.
-    """
-    name = models.CharField(max_length=200, help_text="Enter Product Name")
-    product = models.ManyToManyField(Product, help_text="Select a product for this category")
-
-    # Metadata
-    class Meta: 
-        ordering = ["name"]
-
-    # Methods
-    def get_absolute_url(self):
-         """
-         Returns the url to access a particular instance of MyModelName.
-         """
-         return reverse('category', args=[str(self.id)])
-    
-    def __str__(self):
+        
+    def display_category(self):
         """
-        String for representing the MyModelName object (in Admin site etc.)
+        Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return self.name
+        return ', '.join([ category.name for category in self.category.all()[:3] ])
+    display_category.short_description = 'Category'
 		
 class User(models.Model):
     """
