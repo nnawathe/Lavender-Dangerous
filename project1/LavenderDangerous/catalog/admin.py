@@ -13,5 +13,12 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
-class CategoryAdmin(admin.ModelAdmin):
-	list_display = ()
+class ShoppingCartAdmin(admin.ModelAdmin):
+	list_display = ('user', 'get_product')
+	fields = ['user','product']
+
+	def get_product():
+		return "\n".join([p.products for p in self.product.all()])
+
+admin.site.register(ShoppingCart, ShoppingCartAdmin)
+
