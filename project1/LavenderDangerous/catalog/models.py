@@ -119,6 +119,9 @@ class ShoppingCart(models.Model):
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.user + self.cart
+        
+    def get_product():
+        return "\n".join([p.products for p in self.product.all()])
 		
 class Review(models.Model):
     """
