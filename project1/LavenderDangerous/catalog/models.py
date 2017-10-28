@@ -38,7 +38,7 @@ class Product(models.Model):
     description = models.TextField(max_length=2000, help_text="Enter Product Description")
     category = models.ManyToManyField(Category, help_text="Select a category")
     image = models.CharField(max_length=200, help_text="Enter Image Path")
-    
+
 
     # Metadata
     class Meta: 
@@ -63,43 +63,12 @@ class Product(models.Model):
         """
         return ', '.join([ category.name for category in self.category.all()[:3] ])
     display_category.short_description = 'Category'
-		
-class User(models.Model):
-    """
-    A typical class defining a model, derived from the Model class.
-    """
-
-    name = models.CharField(max_length=200, help_text="Enter User Name")
-    email = models.CharField(max_length=200, unique=True, help_text="Enter Email Address")
-    password_hash = models.CharField(max_length=200)
-    shipping_address = models.CharField(max_length=200, help_text="Comma Separated Shipping Address")
-    billing_address = models.CharField(max_length=200, help_text="Comma Separated Billing Address")
-    account_standing = models.IntegerField(default=0)
     
-
-    # Metadata
-    class Meta: 
-        ordering = ["name"]
-
-    # Methods
-    def get_absolute_url(self):
-         """
-         Returns the url to access a particular instance of MyModelName.
-         """
-         return reverse('account', args=[str(self.id)])
-    
-    def __str__(self):
-        """
-        String for representing the MyModelName object (in Admin site etc.)
-        """
-        return self.name
-		
 class ShoppingCart(models.Model):
     """
     A typical class defining a model, derived from the Model class.
     """
-
-    user = models.OneToOneField(User)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular product")
     product = models.ManyToManyField(Product)
     
 
@@ -122,6 +91,37 @@ class ShoppingCart(models.Model):
         
     def get_product():
         return "\n".join([p.products for p in self.product.all()])
+		
+class User(models.Model):
+    """
+    A typical class defining a model, derived from the Model class.
+    """
+
+    name = models.CharField(max_length=200, help_text="Enter User Name")
+    email = models.CharField(max_length=200, unique=True, help_text="Enter Email Address")
+    password_hash = models.CharField(max_length=200)
+    shipping_address = models.CharField(max_length=200, help_text="Comma Separated Shipping Address")
+    billing_address = models.CharField(max_length=200, help_text="Comma Separated Billing Address")
+    account_standing = models.IntegerField(default=0)
+    cart = models.OneToOneField(ShoppingCart,default=None)
+
+    # Metadata
+    class Meta: 
+        ordering = ["name"]
+
+    # Methods
+    def get_absolute_url(self):
+         """
+         Returns the url to access a particular instance of MyModelName.
+         """
+         return reverse('account', args=[str(self.id)])
+    
+    def __str__(self):
+        """
+        String for representing the MyModelName object (in Admin site etc.)
+        """
+        return self.name
+		
 		
 class Review(models.Model):
     """
@@ -150,8 +150,15 @@ class Review(models.Model):
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.review_text
+        
+    def display_user(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ user.name for user in self.user.all()[:3] ])
+    display_user.short_description = 'User'
 		
-class Requests(models.Model):
+class Request(models.Model):
     """
     A typical class defining a model, derived from the Model class.
     """
@@ -171,11 +178,18 @@ class Requests(models.Model):
          """
          Returns the url to access a particular instance of MyModelName.
          """
-         return reverse('requests', args=[str(self.id)])
+         return reverse('request', args=[str(self.id)])
     
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.request_title
+    
+    def display_user(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ user.name for user in self.user.all()[:3] ])
+    display_user.short_description = 'User'
         

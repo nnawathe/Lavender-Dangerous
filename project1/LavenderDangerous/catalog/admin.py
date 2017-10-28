@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Product, Category, User, ShoppingCart, Review, Requests
+from .models import Product, Category, User, ShoppingCart, Review, Request
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -19,8 +19,25 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ShoppingCartAdmin(admin.ModelAdmin):
-	list_display = ('user', 'get_product')
-	fields = ['user','product']
+	list_display = ('id', 'get_product')
+	fields = ['id','product']
 
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('display_user','product','rating','review_text')
+    fields = ['user','product','rating','review_text']
+
+admin.site.register(Review, ReviewAdmin)
+
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ('display_user','request_title','request_text','popularity')
+    fields = ['user','request_title','request_text','popularity']
+
+admin.site.register(Request, RequestAdmin)
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('name','email','password_hash','shipping_address','billing_address','cart')
+    fields = ['name','email','password_hash','shipping_address','billing_address', 'cart']
+    
+admin.site.register(User, UserAdmin)
