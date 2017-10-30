@@ -63,34 +63,6 @@ class Product(models.Model):
         """
         return ', '.join([ category.name for category in self.category.all()[:3] ])
     display_category.short_description = 'Category'
-    
-class ShoppingCart(models.Model):
-    """
-    A typical class defining a model, derived from the Model class.
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular product")
-    product = models.ManyToManyField(Product)
-    
-
-    # Metadata
-    class Meta: 
-        ordering = ["user"]
-
-    # Methods
-    def get_absolute_url(self):
-         """
-         Returns the url to access a particular instance of MyModelName.
-         """
-         return reverse('cart', args=[str(self.id)])
-    
-    def __str__(self):
-        """
-        String for representing the MyModelName object (in Admin site etc.)
-        """
-        return self.user + self.cart
-        
-    def get_product():
-        return "\n".join([p.products for p in self.product.all()])
 		
 class User(models.Model):
     """
@@ -103,7 +75,6 @@ class User(models.Model):
     shipping_address = models.CharField(max_length=200, help_text="Comma Separated Shipping Address")
     billing_address = models.CharField(max_length=200, help_text="Comma Separated Billing Address")
     account_standing = models.IntegerField(default=0)
-    cart = models.OneToOneField(ShoppingCart,default=None)
 
     # Metadata
     class Meta: 
@@ -121,6 +92,47 @@ class User(models.Model):
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.name
+        
+class ShoppingCart(models.Model):
+    """
+    A typical class defining a model, derived from the Model class.
+    """
+    user = models.OneToOneField(User, default=None)
+    product = models.ManyToManyField(Product, blank=True)
+
+    # Metadata
+    class Meta: 
+        ordering = ["user"]
+
+    # Methods
+    def get_absolute_url(self):
+         """
+         Returns the url to access a particular instance of MyModelName.
+         """
+         return reverse('cart', args=[str(self.id)])
+    
+    def __str__(self):
+        """
+        String for representing the MyModelName object (in Admin site etc.)
+        """
+        return self.user.name
+        
+    def display_product(self):
+        return "\n".join([product.name for product in self.product.all()])
+        
+    def display_product(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ product.name for product in self.product.all()[:3] ])
+    display_product.short_description = 'Products'
+        
+    def display_user(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return self.user.name
+    display_user.short_description = 'User'
 		
 		
 class Review(models.Model):
@@ -155,7 +167,7 @@ class Review(models.Model):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return ', '.join([ user.name for user in self.user.all()[:3] ])
+        return self.user.name
     display_user.short_description = 'User'
 		
 class Request(models.Model):
@@ -190,6 +202,6 @@ class Request(models.Model):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return ', '.join([ user.name for user in self.user.all()[:3] ])
+        return self.user.name
     display_user.short_description = 'User'
         

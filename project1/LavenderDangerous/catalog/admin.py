@@ -19,8 +19,8 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ShoppingCartAdmin(admin.ModelAdmin):
-	list_display = ('id', 'get_product')
-	fields = ['id','product']
+	list_display = ('display_user','display_product')
+	fields = ['user','product']
 
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
 
@@ -37,7 +37,7 @@ class RequestAdmin(admin.ModelAdmin):
 admin.site.register(Request, RequestAdmin)
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name','email','password_hash','shipping_address','billing_address','cart')
-    fields = ['name','email','password_hash','shipping_address','billing_address', 'cart']
+    list_display = ('name','email','password_hash','shipping_address','billing_address')
+    fields = ['name','email','password_hash','shipping_address','billing_address']
     
 admin.site.register(User, UserAdmin)
