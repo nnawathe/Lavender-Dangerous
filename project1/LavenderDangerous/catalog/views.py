@@ -7,10 +7,10 @@ from .models import Product, User, ShoppingCart, Request, Review, Category
 def index(request):
     pass
     
-def product(request):
+def ProductListView(request):
     pass
     
-def user(request):
+def account(request):
     pass
     
 def requests(request):
