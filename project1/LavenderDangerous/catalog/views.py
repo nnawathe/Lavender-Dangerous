@@ -14,7 +14,13 @@ def account(request):
     pass
     
 def requests(request):
-    pass
+    num_requests=Request.objects.count()
+    return render{
+    	request,
+    	'requests.html',
+    	context={'num_requests', num_requests}
+    }
+
     
 def faq(request):
     pass
