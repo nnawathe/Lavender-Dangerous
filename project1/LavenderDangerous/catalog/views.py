@@ -7,7 +7,7 @@ from .models import Product, User, ShoppingCart, Request, Review, Category
 def index(request):
     pass
     
-def ProductListView(request):
+class ProductListView(generic.ListView):
     pass
     
 def account(request):
