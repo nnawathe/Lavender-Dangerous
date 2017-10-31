@@ -7,7 +7,13 @@ from .models import Product, User, ShoppingCart, Request, Review, Category
 def index(request):
     pass
     
-class ProductListView(generic.ListView):
+# class ProductListView(generic.ListView):
+#     pass
+
+def ProductListView(request):
+    pass
+
+def cart(request):
     pass
     
 def account(request):
@@ -15,11 +21,11 @@ def account(request):
     
 def requests(request):
     num_requests=Request.objects.count()
-    return render{
+    return render(
     	request,
     	'requests.html',
     	context={'num_requests', num_requests}
-    }
+    )
 
     
 def faq(request):
