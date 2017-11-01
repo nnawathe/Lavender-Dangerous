@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.views.generic.list import ListView
 # Create your views here.
 
 from .models import Product, User, ShoppingCart, Request, Review, Category
@@ -13,8 +13,10 @@ def index(index):
 # class ProductListView(generic.ListView):
 #     pass
 
-def ProductListView(ProductListView):
-    pass
+class ProductListView(ListView):
+    model = Product
+    def get_context_data(self):
+        pass
     
 def product(product):
     pass
