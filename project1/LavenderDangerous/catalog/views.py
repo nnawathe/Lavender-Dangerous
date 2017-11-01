@@ -4,13 +4,19 @@ from django.shortcuts import render
 
 from .models import Product, User, ShoppingCart, Request, Review, Category
 
-def index(request):
-    pass
+def index(index):
+    return render(
+        index,
+    	'index.html'
+    )
     
 # class ProductListView(generic.ListView):
 #     pass
 
 def ProductListView(request):
+    pass
+    
+def product(request):
     pass
 
 def cart(request):
@@ -24,7 +30,7 @@ def requests(request):
     return render(
     	request,
     	'requests.html',
-    	context={'num_requests', num_requests}
+    	context={'num_requests':num_requests}
     )
 
     

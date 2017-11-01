@@ -1,0 +1,40 @@
+div img {
+	border:1px solid;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.prod-sidebar{
+	padding:2em;
+	border-right:1px solid;
+}
+
+.main-row{
+    height:100%;
+}
+
+.prod-row{
+	padding:5em;
+}
+.prod-title{
+	padding-top:3em;
+	padding-bottom:3em;
+}
+
+.prod-reviews{
+	margin-top:3em;
+	margin-bottom:3em;
+	background-color:lightgray;
+}
+
+.prod-quantity{
+	width:3em;
+}
+
+h5{
+	display:inline-block;
+}
+
+.review-time{
+	
+}
