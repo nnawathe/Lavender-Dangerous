@@ -29,10 +29,16 @@ def account(account):
     
 def requests(request):
     num_requests=Request.objects.count()
+    item1=Request.objects.filter(popularity=1).first()
+    user1=Request.objects.filter(popularity=1).first().display_user
+    item2=Request.objects.filter(popularity=0).first()
+    user2=Request.objects.filter(popularity=0).first().display_user
+
     return render(
     	request,
     	'requests.html',
-    	context={'num_requests':num_requests}
+    	context={'num_requests':num_requests, 'item1': item1, 'user1': user1,
+                    'item2': item2, 'user2': user2}
     )
 
     
