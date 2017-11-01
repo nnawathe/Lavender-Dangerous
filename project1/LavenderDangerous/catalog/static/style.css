@@ -1,0 +1,22 @@
+li {
+	background-color: rgba(62, 62, 182);
+}
+
+.nav-link {
+	font-family: sans-serif;
+}
+
+.form-control.mr-sm-2 {
+	font-style: italic;
+}
+
+#faq-body{
+	padding-left: 5em;
+	padding-top: 4em;
+}
+
+#request-body{
+	padding-left: 5em;
+	padding-top: 4em;
+}
+
