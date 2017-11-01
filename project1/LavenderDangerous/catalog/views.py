@@ -13,16 +13,16 @@ def index(index):
 # class ProductListView(generic.ListView):
 #     pass
 
-def ProductListView(request):
+def ProductListView(ProductListView):
     pass
     
-def product(request):
+def product(product):
     pass
 
-def cart(request):
+def cart(cart):
     pass
     
-def account(request):
+def account(account):
     pass
     
 def requests(request):
@@ -34,5 +34,5 @@ def requests(request):
     )
 
     
-def faq(request):
+def faq(faq):
     pass
