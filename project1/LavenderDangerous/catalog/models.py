@@ -124,7 +124,7 @@ class ShoppingCart(models.Model):
         return self.user.name
 
     def display_product(self):
-        return "\n".join([product.name for product in self.product.all()])
+        return ",\n".join([product.name for product in self.product.all()])
 
     def display_genre(self):
         """
