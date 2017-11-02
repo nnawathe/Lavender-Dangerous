@@ -14,7 +14,7 @@ admin.site.register(Product, ProductAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
     display = ('name')
-    
+
 admin.site.register(Category, CategoryAdmin)
 
 
@@ -39,5 +39,5 @@ admin.site.register(Request, RequestAdmin)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('name','email','password_hash','shipping_address','billing_address')
     fields = ['name','email','password_hash','shipping_address','billing_address']
-    
+
 admin.site.register(User, UserAdmin)

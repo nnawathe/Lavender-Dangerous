@@ -11,7 +11,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200, help_text="Enter Product Name")
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["name"]
 
     # Methods
@@ -20,7 +20,7 @@ class Category(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('category', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
@@ -41,7 +41,7 @@ class Product(models.Model):
 
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["name"]
 
     # Methods
@@ -50,20 +50,20 @@ class Product(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('product', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.name
-        
+
     def display_category(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
         return ', '.join([ category.name for category in self.category.all()[:3] ])
     display_category.short_description = 'Category'
-		
+
 class User(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -77,7 +77,7 @@ class User(models.Model):
     account_standing = models.IntegerField(default=0)
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["name"]
 
     # Methods
@@ -86,13 +86,13 @@ class User(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('account', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.name
-        
+
 class ShoppingCart(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -101,7 +101,7 @@ class ShoppingCart(models.Model):
     product = models.ManyToManyField(Product, blank=True)
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["user"]
 
     # Methods
@@ -110,31 +110,31 @@ class ShoppingCart(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('cart', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.user.name
-        
+
     def display_product(self):
         return "\n".join([product.name for product in self.product.all()])
-        
+
     def display_product(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
         return ', '.join([ product.name for product in self.product.all()[:3] ])
     display_product.short_description = 'Products'
-        
+
     def display_user(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
         return self.user.name
     display_user.short_description = 'User'
-		
-		
+
+
 class Review(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -144,10 +144,10 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     rating = models.IntegerField(default=None)
     review_text = models.TextField(max_length=1000,help_text="Enter Product Review")
-    
+
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["product"]
 
     # Methods
@@ -156,20 +156,20 @@ class Review(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('review', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.review_text
-        
+
     def display_user(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
         return self.user.name
     display_user.short_description = 'User'
-		
+
 class Request(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -179,10 +179,10 @@ class Request(models.Model):
     request_title = models.CharField(max_length=200, help_text="Enter Request Title")
     request_text = models.TextField(max_length=200, help_text="Enter Request Text")
     popularity = models.IntegerField(default=0)
-    
+
 
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ["request_title"]
 
     # Methods
@@ -191,17 +191,16 @@ class Request(models.Model):
          Returns the url to access a particular instance of MyModelName.
          """
          return reverse('request', args=[str(self.id)])
-    
+
     def __str__(self):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
         return self.request_title
-    
+
     def display_user(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
         return self.user.name
     display_user.short_description = 'User'
-        
