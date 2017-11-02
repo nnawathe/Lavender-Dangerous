@@ -24,15 +24,12 @@ def product(product):
     reviewer=Review.objects.first().display_user()
     review_text=Review.objects.first().__str__
     score=Review.objects.first().display_rating()
-    reviewer2=Review.objects.first().display_user()
-    review2_text=Review.objects.first().__str__
-    score2=Review.objects.first().display_rating()
 
     return render(
         product,
         'product.html',
         context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text, 
-        'score': score, 'reviewer2': reviewer, 'review2_text': review_text, 'score2': score}
+        'score': score}
         )
 
 def cart(cart):
