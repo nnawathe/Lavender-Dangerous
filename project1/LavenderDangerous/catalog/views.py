@@ -21,18 +21,18 @@ class ProductListView(ListView):
 def product(product):
     description=Product.objects.filter(name='Scott 1000 Toilet Paper').first()
     price=Product.objects.filter(name='Scott 1000 Toilet Paper').first().display_price()
-    reviewer=Review.objects.first().display_user()
-    review_text=Review.objects.first().__str__
-    score=Review.objects.first().display_rating()
-    reviewer2=Review.objects.first().display_user()
-    review2_text=Review.objects.first().__str__
-    score2=Review.objects.first().display_rating()
+    reviewer1=Review.objects.first().user.__str__
+    review1_text=Review.objects.first().__str__
+    score1=Review.objects.first().display_rating
+    reviewer2=Review.objects.all()[1].user.__str__
+    review2_text=Review.objects.all()[1].__str__
+    score2=Review.objects.all()[1].display_rating
 
     return render(
         product,
         'product.html',
-        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text, 
-        'score': score, 'reviewer2': reviewer, 'review2_text': review_text, 'score2': score}
+        context={'description': description, 'price': price, 'reviewer1': reviewer1, 'review1_text': review1_text, 
+        'score1': score1, 'reviewer2': reviewer2, 'review2_text': review2_text, 'score2': score2}
         )
 
 def cart(cart):
