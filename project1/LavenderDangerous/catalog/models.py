@@ -64,6 +64,12 @@ class Product(models.Model):
         return ', '.join([ category.name for category in self.category.all()[:3] ])
     display_category.short_description = 'Category'
 
+    def display_price(self):
+        """
+        Returns price
+        """
+        return self.price
+
 class User(models.Model):
     """
     A typical class defining a model, derived from the Model class.
@@ -120,7 +126,7 @@ class ShoppingCart(models.Model):
     def display_product(self):
         return "\n".join([product.name for product in self.product.all()])
 
-    def display_product(self):
+    def display_genre(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
@@ -169,6 +175,10 @@ class Review(models.Model):
         """
         return self.user.name
     display_user.short_description = 'User'
+
+    def display_rating(self):
+        return self.rating
+
 
 class Request(models.Model):
     """

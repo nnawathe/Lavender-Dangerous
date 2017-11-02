@@ -19,25 +19,28 @@ class ProductListView(ListView):
         pass
 
 def product(product):
-    description=Product.description
-    price=Product.price
-    reviewer=Product.price
-    review_text=Product.price
+    description=Product.objects.filter(name='Scott 1000 Toilet Paper').first()
+    price=Product.objects.filter(name='Scott 1000 Toilet Paper').first().display_price
+    reviewer=Review.objects.first().display_user
+    review_text=Review.objects.first().__str__
+    score=Review.objects.first().display_rating
 
     return render(
         product,
         'product.html',
-        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text}
+        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text, 'score': score}
         )
 
 def cart(cart):
-    item1=ShoppingCart.objects.filter(product)
-    item2=ShoppingCart.objects.first()
+    item1=ShoppingCart.objects.first().display_product
+    item2=ShoppingCart.objects.first().display_product
+    price1=Product.price
+    price2=Product.price
 
     return render(
         cart,
         'cart.html',
-        context={'item1': item1, 'item2': item2}
+        context={'item1': item1, 'item2': item2, 'price1': price1, 'price2': price2}
     )
 
 def user(user):
