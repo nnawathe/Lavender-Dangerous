@@ -32,9 +32,9 @@ def product(product):
         )
 
 def cart(cart):
-    item1=ShoppingCart.objects.first().display_product
+    item1=ShoppingCart.objects.first().display_product[1]
     item2=ShoppingCart.objects.first().display_product
-    price1=Product.price
+    price1=ShoppingCart.objects.first().product.display_price
     price2=Product.price
 
     return render(
