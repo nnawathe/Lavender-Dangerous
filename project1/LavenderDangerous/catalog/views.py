@@ -43,4 +43,7 @@ def requests(request):
 
     
 def faq(faq):
-    pass
+     return render(
+        faq,
+        'faq.html'
+    )
