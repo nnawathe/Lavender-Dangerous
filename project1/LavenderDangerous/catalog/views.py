@@ -25,10 +25,10 @@ def product(product):
         )
 
 def cart(cart):
-    return render{
+    return render(
         cart,
         'cart.html'
-    }
+    )
 
 def user(user):
     return render(
