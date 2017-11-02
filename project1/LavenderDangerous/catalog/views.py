@@ -20,22 +20,26 @@ class ProductListView(ListView):
 
 def product(product):
     description=Product.objects.filter(name='Scott 1000 Toilet Paper').first()
-    price=Product.objects.filter(name='Scott 1000 Toilet Paper').first().display_price
-    reviewer=Review.objects.first().display_user
+    price=Product.objects.filter(name='Scott 1000 Toilet Paper').first().display_price()
+    reviewer=Review.objects.first().display_user()
     review_text=Review.objects.first().__str__
-    score=Review.objects.first().display_rating
+    score=Review.objects.first().display_rating()
+    reviewer2=Review.objects.first().display_user()
+    review2_text=Review.objects.first().__str__
+    score2=Review.objects.first().display_rating()
 
     return render(
         product,
         'product.html',
-        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text, 'score': score}
+        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text, 
+        'score': score, 'reviewer2': reviewer, 'review2_text': review_text, 'score2': score}
         )
 
 def cart(cart):
     item1=ShoppingCart.objects.first().product.first()
     item2=ShoppingCart.objects.first().product.all()[1]
-    price1=ShoppingCart.objects.first().product.first().display_price
-    price2=ShoppingCart.objects.first().product.all()[1].display_price
+    price1=ShoppingCart.objects.first().product.first().display_price()
+    price2=ShoppingCart.objects.first().product.all()[1].display_price()
 
     return render(
         cart,

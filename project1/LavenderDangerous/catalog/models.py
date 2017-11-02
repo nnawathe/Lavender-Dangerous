@@ -70,6 +70,7 @@ class Product(models.Model):
         """
         return self.price
 
+
 class User(models.Model):
     """
     A typical class defining a model, derived from the Model class.
