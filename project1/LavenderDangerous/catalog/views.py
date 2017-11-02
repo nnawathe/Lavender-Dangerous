@@ -19,16 +19,26 @@ class ProductListView(ListView):
         pass
 
 def product(product):
+    description=Product.description
+    price=Product.price
+    reviewer=Product.price
+    review_text=Product.price
+
     return render(
         product,
-        'product.html'
+        'product.html',
+        context={'description': description, 'price': price, 'reviewer': reviewer, 'review_text': review_text}
         )
 
 def cart(cart):
-    return render{
+    item1=ShoppingCart.objects.filter(product)
+    item2=ShoppingCart.objects.first()
+
+    return render(
         cart,
-        'cart.html'
-    }
+        'cart.html',
+        context={'item1': item1, 'item2': item2}
+    )
 
 def user(user):
     return render(

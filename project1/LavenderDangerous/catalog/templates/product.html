@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+{% load static %}
 
 <div class="container-fluid">
 	<div class="main-row row">
@@ -14,12 +15,11 @@
 				</div>
 				
 				<div class="col-sm-3">
-					<img src="images/scott1000.png" />
+					<img src="{% static 'images/scott1000.png'%}" style="width:200px;height:200px;" />
 				</div>
 				<div class="col-sm-9">
-					<p>Scott® 1000 toilet paper gives you the quality you want in 1,000 septic-safe sheets. Performance and long-lasting toilet paper rolls with the value you expect.</p>
-					<p>1,000 sheets are being ordered in packs of 9</p>
-					<h5>Unit Price: $3.99</h5>
+					<p>{{description}}</p>
+					<h5>Unit Price: {{price}}</h5>
 					<label>Quantity:</label>
 					<select class="prod-quantity">
 						<option value="1">1</option>
@@ -48,12 +48,11 @@
 						</span> 
 						</span>    
        
-						<h5 class="review-author"> KathyH </h5> 
+						<h5 class="review-author"> {{reviewer}} </h5> 
 						<span class="review-time">· 10 days ago &nbsp;</span> 
 					</div>
 					<div class="review-content">
-						<p>This toilet paper sucks!</p>
-						<p>They should call it sandpaper not toilet paper.  I had to take my son to the hospital after it removed his skin.</p>
+						<p>{{review_text}}</p>
 					</div>
 					<div class="review-header">
 						<span class="rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating"> 
