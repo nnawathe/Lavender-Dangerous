@@ -19,10 +19,16 @@ class ProductListView(ListView):
         pass
 
 def product(product):
-    pass
+    return render(
+        product,
+        'product.html'
+        )
 
 def cart(cart):
-    pass
+    return render{
+        cart,
+        'cart.html'
+    }
 
 def user(user):
     return render(
