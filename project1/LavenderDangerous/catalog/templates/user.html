@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1><strong>Your Account</strong></h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class ="col-sm-3 item">
+      <h5>Items you may like</h5>
+      <div class ="col-sm-12">
+        <h11>Nothing to Show</h11>
+      </div>
+    </div>
+    <div class ="col-sm-6">
+      <div class = "col-sm-12 account">
+        <h12>Your Account</h1>
+          <div class ="col-sm-12">
+            <h8><a href="#">Settings</a></h8>
+          </div>
+          <div class ="col-sm-12">
+            <h8><a href="#">Preferences</a></h9>
+          </div>
+          <div class ="col-sm-12">
+            <h8><a href="#">Terms and Conditions</a></h8>
+          </div>
+      </div>
+      <div class = "col-sm-12 favs">
+        <h12>Favorites List</h7>
+        <div class ="col-sm-12 prod">
+          <h2>Scott 1000 Toilet Paper</h2>
+        </div>
+        <div class = "col-sm-12">
+          <a href="product.html"><img src ="images/scott1000.png" /></a>
+    </div>
+      </div>
+      <div class = "col-sm-12 reqs">
+        <h12>Your Requests</h8>
+        <div class = "col-sm-12">
+          <p><br><strong>You requested:</strong><br>
+     (1 days ago)<br>
+     Name: Toilet paper<br>
+     Description: Toilet paper.<br>
+     Cost: $3.99</p>
+        </div>
+      </div>
+
+    </div>
+    <div class= "col-sm-3 cart">
+      <h2>Items in Cart</h2>
+      <div class ="col-sm-12 prod">
+        <h2>Scott 1000 Toilet Paper</h2>
+      </div>
+      <div class = "col-sm-12">
+        <img src ="images/scott1000.png" />
+  </div>
+  <div class ="col-sm-12">
+    <h3>Unit Price: $3.99</h3>
+    <h4>Quantity: 2</h4>
+    <button class="check-btn">Checkout!</button>
+  </div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

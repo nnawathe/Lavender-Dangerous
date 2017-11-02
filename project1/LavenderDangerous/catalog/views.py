@@ -9,7 +9,7 @@ def index(index):
         index,
     	'index.html'
     )
-    
+
 # class ProductListView(generic.ListView):
 #     pass
 
@@ -17,16 +17,19 @@ class ProductListView(ListView):
     model = Product
     def get_context_data(self):
         pass
-    
+
 def product(product):
     pass
 
 def cart(cart):
     pass
-    
-def account(account):
-    pass
-    
+
+def user(user):
+    return render(
+        user,
+    	'user.html'
+    )
+
 def requests(request):
     num_requests=Request.objects.count()
     item1=Request.objects.filter(popularity=1).first()
@@ -41,7 +44,7 @@ def requests(request):
                     'item2': item2, 'user2': user2}
     )
 
-    
+
 def faq(faq):
      return render(
         faq,
