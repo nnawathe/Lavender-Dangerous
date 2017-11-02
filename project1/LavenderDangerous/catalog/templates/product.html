@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-sm-9">
 					<p>{{description}}</p>
-					<h5>Unit Price: ${{price}}</h5>
+					<h5>Unit Price: {{price}}</h5>
 					<label>Quantity:</label>
 					<select class="prod-quantity">
 						<option value="1">1</option>
@@ -43,16 +43,32 @@
 						<meta itemprop="ratingValue" content="1"> 
 						<meta itemprop="bestRating" content="5"> 
 						<span class="bv-rating-stars-container" style="font-size:2em;color:gold;"> 
-						<abbr title="1 out of 5 stars." style="width:20% !important;" aria-hidden="true"> {{score}} / 5 </abbr>
+						<abbr title="1 out of 5 stars." style="width:20% !important;" aria-hidden="true"> {{score1}} / 5 </abbr>
 						<br/>
 						</span> 
 						</span>    
        
-						<h5 class="review-author"> {{reviewer}} </h5> 
+						<h5 class="review-author"> {{reviewer1}} </h5> 
 						<span class="review-time">· 10 days ago &nbsp;</span> 
 					</div>
 					<div class="review-content">
-						<p>{{review_text}}</p>
+						<p>{{review_text2}}</p>
+					</div>
+					<div class="review-header">
+						<span class="rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating"> 
+						<meta itemprop="ratingValue" content="5"> 
+						<meta itemprop="bestRating" content="5"> 
+						<span class="bv-rating-stars-container" style="font-size:2em;color:gold;"> 
+						<abbr title="5 out of 5 stars." style="width:20% !important;" aria-hidden="true"> {{score2}} / 5 </abbr>
+						<br/>
+						</span> 
+						</span>    
+       
+						<h5 class="review-author"> {{reviewer2}} </h5> 
+						<span class="review-time">· 12 days ago &nbsp;</span> 
+					</div>
+					<div class="review-content">
+						<p>{{review2_text}}</p>
 					</div>
 				</div>
 			</div>
