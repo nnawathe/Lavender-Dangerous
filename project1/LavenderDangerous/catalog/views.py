@@ -52,8 +52,8 @@ def user(user):
 
 def requests(request):
     num_requests=Request.objects.count()
-    item1=Request.objects.filter(popularity=1).first()
-    user1=Request.objects.filter(popularity=1).first().display_user
+    item1=Request.objects.filter(popularity__gte=1).first()
+    user1=Request.objects.filter(popularity__gte=1).first().display_user
     item2=Request.objects.filter(popularity=0).first()
     user2=Request.objects.filter(popularity=0).first().display_user
 
