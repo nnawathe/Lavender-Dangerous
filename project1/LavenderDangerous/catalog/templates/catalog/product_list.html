@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+	<div class="main-row row">
+		<div class="col-sm-3 prod-sidebar">
+			<h5>Filter Products</h5>
+		</div>
+		<div class="col-sm-9">
+			 <h1>Products</h1>
+
+            {% if product_list %}
+            <ul>
+
+            {% for products in product_list %}
+            <li>
+                <img width="150px" height = "150px" src="{% static products.image %}" />
+                <a href="{{ products.get_absolute_url }}">{{ products.name }}</a> <b>{{products.price}}</b>
+            {% endfor %}
+
+            </ul>
+            {% else %}
+            <p>There are no products to display</p>
+            {% endif %} 
+		</div>
+	</div>
+</div>
+
+{% endblock %}

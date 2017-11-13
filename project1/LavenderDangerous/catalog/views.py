@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views import generic
 # Create your views here.
 
 from .models import Product, User, ShoppingCart, Request, Review, Category
@@ -13,27 +13,16 @@ def index(index):
 # class ProductListView(generic.ListView):
 #     pass
 
-class ProductListView(ListView):
+class ProductListView(generic.ListView):
     model = Product
-    def get_context_data(self):
-        pass
+    
+class ProductDetailView(generic.DetailView):
+    model = Product
 
-def product(product):
-    description=Product.objects.filter(name='Scott 1000 Toilet Paper').first()
-    price=Product.objects.filter(name='Scott 1000 Toilet Paper').first().display_price()
-    reviewer1=Review.objects.first().user.__str__
-    review1_text=Review.objects.first().__str__
-    score1=Review.objects.first().display_rating
-    reviewer2=Review.objects.all()[1].user.__str__
-    review2_text=Review.objects.all()[1].__str__
-    score2=Review.objects.all()[1].display_rating
-
-    return render(
-        product,
-        'product.html',
-        context={'description': description, 'price': price, 'reviewer1': reviewer1, 'review1_text': review1_text, 
-        'score1': score1, 'reviewer2': reviewer2, 'review2_text': review2_text, 'score2': score2}
-        )
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['rvw'] = Review.objects.filter(product_id=self.kwargs['pk']).all()
+        return context
 
 def cart(cart):
     item1=ShoppingCart.objects.first().product.first()
@@ -59,16 +48,12 @@ def user(user):
 
 def requests(request):
     num_requests=Request.objects.count()
-    item1=Request.objects.filter(popularity__gte=1).first()
-    user1=Request.objects.filter(popularity__gte=1).first().display_user
-    item2=Request.objects.filter(popularity=0).first()
-    user2=Request.objects.filter(popularity=0).first().display_user
+    rquests=Request.objects.order_by('-popularity').all()
 
     return render(
     	request,
     	'requests.html',
-    	context={'num_requests':num_requests, 'item1': item1, 'user1': user1,
-                    'item2': item2, 'user2': user2}
+    	context={'num_requests':num_requests, 'rquests': rquests}
     )
 
 

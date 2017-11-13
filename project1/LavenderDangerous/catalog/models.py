@@ -1,8 +1,6 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 # Create your models here.
-
-import uuid # Required for unique products
 
 class Category(models.Model):
     """
@@ -31,7 +29,6 @@ class Product(models.Model):
     """
     A typical class defining a model, derived from the Model class.
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular product")
     name = models.CharField(max_length=200, help_text="Enter Product Name")
     price = models.FloatField(default=None)
     quantity = models.IntegerField(default=None)
@@ -49,7 +46,7 @@ class Product(models.Model):
          """
          Returns the url to access a particular instance of MyModelName.
          """
-         return reverse('product', args=[str(self.id)])
+         return reverse('product-detail', args=[str(self.id)])
 
     def __str__(self):
         """

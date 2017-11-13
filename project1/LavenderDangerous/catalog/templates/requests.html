@@ -17,11 +17,6 @@
 	
 	<div class="col-sm-3 req-title">
     <form>
-    <div class="form-group">
-      <label for="user">Username:</label>
-      <input type="text" class="form-control" id="user">
-    </div>
-
     <p><br>Item Info</p>
     <div class="form-group">
       <label for="product">Name:</label>
@@ -38,12 +33,13 @@
     <button type="submit" class="btn btn-default">Submit</button>
     </form>
 
-    <h3><br>Example of requests:</h3>
-    <p><strong>High popularity:</strong><br>
-    		   Request for {{item1}} from {{user1}}<br><br>
-    		<strong>Lower popularity:</strong><br>
-    	       Request for {{item2}} from {{user2}}<br>
+    <h3><br>Current Requests:</h3>
+    {% for r in rquests %}
+    <p><strong>Votes: {{r.popularity}}</strong><br>
+    		   Request for <strong>{{r.request_title}}</strong> from <strong>{{r.user}}</strong><br><br>
+               {{r.request_text}}
     </p>
+    {% endfor %}
       <!-- (13 days ago)<br>
       Name: Toilet paper<br>
       Description: It's toilet paper, duh. (Scott 1000 brand)<br>
