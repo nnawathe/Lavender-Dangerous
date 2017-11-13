@@ -29,3 +29,8 @@ from django.views.generic import RedirectView
 urlpatterns += [
 	url(r'^$', RedirectView.as_view(url='catalog', permanent = True)),
 ]
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+]

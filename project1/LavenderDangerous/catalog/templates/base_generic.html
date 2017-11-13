@@ -50,6 +50,14 @@
     <li class=list-inline-item><a href="{% url 'user' %}" class="btn btn-info btn-lg">
           <span class="fa fa-user"></span> Account
         </a></li>
+        <li>
+          {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+   {% endif %} 
+ </li>
         </ul>
 
 

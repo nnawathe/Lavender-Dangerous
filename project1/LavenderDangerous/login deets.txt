@@ -5,3 +5,8 @@ OR
 
 user: compsci326
 pass: compsci326
+
+OR BASIC USER
+
+user: lavender
+pass: dangerous
