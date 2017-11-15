@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Product, Category, User, ShoppingCart, Review, Request
+from .models import Product, Category, Profile, ShoppingCart, Review, Request
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -36,8 +36,8 @@ class RequestAdmin(admin.ModelAdmin):
 
 admin.site.register(Request, RequestAdmin)
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('name','email','password_hash','shipping_address','billing_address')
-    fields = ['name','email','password_hash','shipping_address','billing_address']
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user','shipping_address','billing_address','account_standing')
+    fields = ['user','shipping_address','billing_address','account_standing']
 
-admin.site.register(User, UserAdmin)
+admin.site.register(Profile, ProfileAdmin)

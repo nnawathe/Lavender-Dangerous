@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 class Category(models.Model):
@@ -68,22 +71,18 @@ class Product(models.Model):
         return self.price
 
 
-class User(models.Model):
+class Profile(models.Model):
     """
     A typical class defining a model, derived from the Model class.
     """
-
-    name = models.CharField(max_length=200, help_text="Enter User Name")
-    email = models.CharField(max_length=200, unique=True, help_text="Enter Email Address")
-    password_hash = models.CharField(max_length=200)
+    user = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
     shipping_address = models.CharField(max_length=200, help_text="Comma Separated Shipping Address")
     billing_address = models.CharField(max_length=200, help_text="Comma Separated Billing Address")
     account_standing = models.IntegerField(default=0)
 
     # Metadata
     class Meta:
-        ordering = ["name"]
-
+        pass
     # Methods
     def get_absolute_url(self):
          """
@@ -95,7 +94,16 @@ class User(models.Model):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
-        return self.name
+        return self.user.first_name +" "+ self.user.last_name 
+        
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class ShoppingCart(models.Model):
     """
@@ -119,7 +127,7 @@ class ShoppingCart(models.Model):
         """
         String for representing the MyModelName object (in Admin site etc.)
         """
-        return self.user.name
+        return self.user.first_name
 
     def display_product(self):
         return ",\n".join([product.name for product in self.product.all()])
@@ -135,7 +143,7 @@ class ShoppingCart(models.Model):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return self.user.name
+        return self.user.first_name
     display_user.short_description = 'User'
 
 
@@ -171,7 +179,7 @@ class Review(models.Model):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return self.user.name
+        return self.user.first_name
     display_user.short_description = 'User'
 
     def display_rating(self):
@@ -210,5 +218,5 @@ class Request(models.Model):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
         """
-        return self.user.name
+        return self.user.first_name
     display_user.short_description = 'User'

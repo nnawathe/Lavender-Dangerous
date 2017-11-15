@@ -36,7 +36,7 @@
     <h3><br>Current Requests:</h3>
     {% for r in rquests %}
     <p><strong>Votes: {{r.popularity}}</strong><br>
-    		   Request for <strong>{{r.request_title}}</strong> from <strong>{{r.user}}</strong><br><br>
+    		   Request for <strong>{{r.request_title}}</strong> from <strong>{{r.user.first_name}}</strong><br><br>
                {{r.request_text}}
     </p>
     {% endfor %}
