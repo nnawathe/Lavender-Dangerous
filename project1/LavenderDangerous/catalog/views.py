@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 # Create your views here.
 
-from .models import Product, User, ShoppingCart, Request, Review, Category
+from django.contrib.auth.models import User
+from .models import Product, Profile, ShoppingCart, Request, Review, Category
 
 def index(index):
     return render(
@@ -25,19 +26,29 @@ class ProductDetailView(generic.DetailView):
         return context
 
 def cart(cart):
-    item1=ShoppingCart.objects.first().product.first()
-    item2=ShoppingCart.objects.first().product.all()[1]
-    price1=ShoppingCart.objects.first().product.first().display_price()
-    price2=ShoppingCart.objects.first().product.all()[1].display_price()
-    subtotal=price1+price2
-    shipping=3.99
-    total=shipping+subtotal
+    if cart.user.is_authenticated:
+        items=ShoppingCart.objects.filter(user=cart.user).first()
+        if items != None:
+            items = items.product.all()
+            subtotal = 0
+            for item in items:
+                subtotal += item.price
+            shipping=3.99
+            total=shipping+subtotal
+        else:
+            subtotal=0
+            shipping=0
+            total=0
+    else:
+        items=None
+        subtotal=0
+        shipping=0
+        total=0
 
     return render(
         cart,
         'cart.html',
-        context={'item1': item1, 'item2': item2, 'price1': price1, 'price2': price2, 'subtotal': subtotal,
-        'total': total, 'shipping': shipping}
+        context={'items': items, 'subtotal': subtotal, 'total': total, 'shipping': shipping}
     )
 
 def user(user):

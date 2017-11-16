@@ -6,6 +6,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
+        {% if user.is_authenticated %}
+        {% if not items %}
+             <p>Go shopping to add to cart</p>
+        {% else %}
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -17,46 +21,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    
+                    {% for item in items %}
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static 'images/peanutbutter.jpg'%}" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">{{item1}}</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Jiff</a></h5>
+                                <h4 class="media-heading"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h4>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="1">
+                        <input type="text" class="form-control" id="" value="1">
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>{{price1}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>{{price1}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         <button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                     </tr>
-                    <tr>
-                        <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static 'images/scott1000.png'%}" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">{{item2}}</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Scott</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Needs another 15 orders</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="1">
-                        </td>
-                        <td class="col-md-1 text-center"><strong>{{price2}}</strong></td>
-                        <td class="col-md-1 text-center"><strong>{{price2}}</strong></td>
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
+                    {% endfor %}
                     <tr>
                         <td>   </td>
                         <td>   </td>
@@ -83,16 +70,21 @@
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button type="button" class="btn btn-default">
+                        <a href="{% url 'products' %}"><button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        </button></a></td>
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
                         </button></td>
                     </tr>
+                    
                 </tbody>
             </table>
+            {% endif %}
+            {% else %}
+                <p>Please login to use cart</p>
+            {% endif %}
         </div>
     </div>
 </div>
