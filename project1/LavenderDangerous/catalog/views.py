@@ -69,6 +69,31 @@ def requests(request):
     	context={'num_requests':num_requests, 'rquests': rquests}
     )
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
+from .forms import SubmitRequestForm
+
+def submit_request(request, pk):
+    req=get_object_or_404(Request, pk = pk)
+
+
+    # Create a form instance and populate it with data from the request (binding):
+    form = SubmitRequestForm(request.POST)
+
+    # Check if the form is valid:
+    if form.is_valid():
+        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+        req.request_title = form.cleaned_data['product_name']
+        req.request_text = form.cleaned_data['description']
+        req.popularity = 0;
+
+        #TODO: make a template for request confirmation
+        return HttpResponseRedirect(reverse('requests') )
+
+    return render(request, 'catalog/request_receieved_confirmation.html', {'form': form, 'req':req})
+
 
 def faq(faq):
      return render(
