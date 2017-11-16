@@ -69,30 +69,38 @@ def requests(request):
     	context={'num_requests':num_requests, 'rquests': rquests}
     )
 
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+# from django.shortcuts import get_object_or_404
+# from django.http import HttpResponseRedirect
+# from django.core.urlresolvers import reverse
 
-from .forms import SubmitRequestForm
+# from .forms import SubmitRequestForm
 
-def submit_request(request, pk):
-    req=get_object_or_404(Request, pk = pk)
+# def submit_request(request, pk):
+#     req=get_object_or_404(Request, pk = pk)
+
+#     # Create a form instance and populate it with data from the request (binding):
+#     form = SubmitRequestForm(request.POST)
+
+#     # Check if the form is valid:
+#     if form.is_valid():
+#         # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+#         req.request_title = form.cleaned_data['product_name']
+#         req.request_text = form.cleaned_data['description']
+#         req.popularity = 0;
+
+#         #TODO: make a template for request confirmation
+#         # return HttpResponseRedirect(reverse('requests') )
+
+#     return render(request, 'request.html', {'form': form, 'req':req})
 
 
-    # Create a form instance and populate it with data from the request (binding):
-    form = SubmitRequestForm(request.POST)
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Request
 
-    # Check if the form is valid:
-    if form.is_valid():
-        # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-        req.request_title = form.cleaned_data['product_name']
-        req.request_text = form.cleaned_data['description']
-        req.popularity = 0;
-
-        #TODO: make a template for request confirmation
-        # return HttpResponseRedirect(reverse('requests') )
-
-    return render(request, 'catalog/request_receieved_confirmation.html', {'form': form, 'req':req})
+class RequestCreate(CreateView):
+    model = Request
+    fields = '__all__'
 
 
 def faq(faq):
