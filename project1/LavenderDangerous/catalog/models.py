@@ -109,8 +109,8 @@ class ShoppingCart(models.Model):
     """
     A typical class defining a model, derived from the Model class.
     """
-    user = models.OneToOneField(User, default=None)
-    product = models.ManyToManyField(Product, blank=True)
+    user = models.ForeignKey(User, default=None)
+    product = models.OneToOneField(Product, default=None, blank=True)
     quantity = models.IntegerField(default=0)
 
     # Metadata
@@ -131,7 +131,7 @@ class ShoppingCart(models.Model):
         return self.user.first_name
 
     def display_product(self):
-        return ",\n".join([product.name for product in self.product.all()])
+        return self.product.name
 
     def display_genre(self):
         """

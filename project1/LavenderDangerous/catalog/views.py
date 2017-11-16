@@ -26,13 +26,15 @@ class ProductDetailView(generic.DetailView):
         return context
 
 def cart(cart):
+    temp = []
     if cart.user.is_authenticated:
-        items=ShoppingCart.objects.filter(user=cart.user).first()
+        items = ShoppingCart.objects.filter(user=cart.user)
         if items != None:
-            items = items.product.all()
             subtotal = 0
             for item in items:
-                subtotal += item.price
+                item=item.product
+                temp.append(item)
+                subtotal += item.price*ShoppingCart.objects.get(user=cart.user,product=item).quantity
             shipping=3.99
             total=shipping+subtotal
         else:
@@ -48,7 +50,7 @@ def cart(cart):
     return render(
         cart,
         'cart.html',
-        context={'items': items, 'subtotal': subtotal, 'total': total, 'shipping': shipping}
+        context={'items': temp, 'subtotal': subtotal, 'total': total, 'shipping': shipping}
     )
 
 def user(user):

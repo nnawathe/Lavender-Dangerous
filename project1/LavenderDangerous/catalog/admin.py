@@ -19,8 +19,8 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ShoppingCartAdmin(admin.ModelAdmin):
-	list_display = ('display_user','display_product')
-	fields = ['user','product']
+	list_display = ('display_user','display_product','quantity')
+	fields = ['user','product','quantity']
 
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
 
