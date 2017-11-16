@@ -111,6 +111,7 @@ class ShoppingCart(models.Model):
     """
     user = models.OneToOneField(User, default=None)
     product = models.ManyToManyField(Product, blank=True)
+    quantity = models.IntegerField(default=0)
 
     # Metadata
     class Meta:
