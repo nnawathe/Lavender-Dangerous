@@ -90,7 +90,7 @@ def submit_request(request, pk):
         req.popularity = 0;
 
         #TODO: make a template for request confirmation
-        return HttpResponseRedirect(reverse('requests') )
+        # return HttpResponseRedirect(reverse('requests') )
 
     return render(request, 'catalog/request_receieved_confirmation.html', {'form': form, 'req':req})
 

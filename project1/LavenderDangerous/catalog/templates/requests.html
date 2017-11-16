@@ -16,21 +16,16 @@
     </div>
 	
 	<div class="col-sm-3 req-title">
-    <form>
+    <form action="/request_url/" method="post">
+      {% csrf_token %}
     <p><br>Item Info</p>
-    <div class="form-group">
-      <label for="product">Name:</label>
+      <label for="product">Product Name:</label>
       <input type="text" class="form-control" id="product">
-    </div>
-    <div class="form-group">
+      <br>
       <label for="description">Description:</label>
-      <textarea type="text" class="form-control" id="description"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="cost">Cost:</label>
-      <input type="text" class="form-control" id="cost">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+      <input type="text" class="form-control" id="description">
+      <br>
+      <input type="submit" value="Submit">
     </form>
 
     <h3><br>Current Requests:</h3>
