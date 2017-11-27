@@ -16,7 +16,7 @@ def index(index):
 
 class ProductListView(generic.ListView):
     model = Product
-    
+
 class ProductDetailView(generic.DetailView):
     model = Product
 
@@ -107,4 +107,9 @@ def faq(faq):
      return render(
         faq,
         'faq.html'
+    )
+def terms(terms):
+    return render(
+    terms,
+    'terms.html'
     )

@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1><strong>Welcome to your weBulk account, {{ user.first_name }}!</strong></h1>
+<h1 style="text-align:center"><strong>Welcome to your weBulk account, {{ user.first_name }}!</strong></h1>
 
 <div class="container-fluid">
   <div class="row">
@@ -13,12 +13,12 @@
     </div>
     <div class ="col-sm-6">
       <div class = "col-sm-12 account">
-        <h12>Your Account</h1>
+        <h12>Your Account</h12>
           <div class ="col-sm-12">
             <h8><a href="#">Settings</a></h8>
           </div>
           <div class ="col-sm-12">
-            <h8><a href="#">Terms and Conditions</a></h8>
+            <h8><a href="{% url 'terms' %}">Terms and Conditions</a></h8>
           </div>
       </div>
       <div class = "col-sm-12 favs">

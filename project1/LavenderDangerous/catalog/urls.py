@@ -8,6 +8,7 @@ urlpatterns = [
 	url(r'user', views.user, name='user'),
 	url(r'cart', views.cart, name='cart'),
 	url(r'faq', views.faq, name='faq'),
+	url(r'terms', views.terms, name='terms'),
 	url(r'requests', views.requests, name='requests'),
     #url(r'product', views.product, name='product'),
 	url(r'products/$', views.ProductListView.as_view(), name='products'),
