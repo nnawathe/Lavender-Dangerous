@@ -29,11 +29,22 @@
       <div class = "col-sm-12 reqs">
         <h12><strong>Your Requests</strong></h8>
           <div class = "col-sm-12">
-            <p><br><strong>You requested:</strong><br>
-             (1 days ago)<br>
-             Name: Toilet paper<br>
-             Description: Toilet paper.<br>
-           Cost: $3.99</p>
+            {% if user.is_authenticated %}
+    {{user.first_name}}
+    {% for r in rquests %}
+    <p><strong>Votes: {{r.popularity}}</strong><br>
+           Request for <strong>{{r.request_title}}</strong><br>
+               {{r.request_text}}
+    </p>
+    {% endfor %}
+    <h1>imin<h1>
+    
+    {% else %}
+    <p>Please login to see your requests</p>
+    {% endif %}
+
+
+         
          </div>
        </div>
 
