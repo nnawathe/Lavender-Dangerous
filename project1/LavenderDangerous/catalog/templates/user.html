@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class ="col-sm-3 item">
+    <div class ="col-lg-3 item">
       <h12><strong>Your Account</strong></h12>
       <div class ="col-sm-12">
         <h8><a href="#">Settings</a></h8>
@@ -16,50 +16,40 @@
         <h8><a href="{% url 'terms' %}">Terms and Conditions</a></h8>
       </div>
     </div>
-    <div class ="col-sm-6">
-      <div class = "col-sm-12 favs">
-        <h7><strong>Favorites List</strong></h7>
-        <div class ="col-sm-12 prod">
-          <h2>Scott 1000 Toilet Paper</h2>
-        </div>
+    <div class = "col-lg-3 reqs">
+      <h12><strong>Your Requests</strong></h12>
         <div class = "col-sm-12">
-          <a href="product.html"><img src ="images/scott1000.png" /></a>
-        </div>
-      </div>
-      <div class = "col-sm-12 reqs">
-        <h12><strong>Your Requests</strong></h8>
-          <div class = "col-sm-12">
-            <p><br><strong>You requested:</strong><br>
-             (1 days ago)<br>
-             Name: Toilet paper<br>
-             Description: Toilet paper.<br>
-           Cost: $3.99</p>
-         </div>
+          <p><br><strong>You requested:</strong><br>
+           (1 days ago)<br>
+           Name: Toilet paper<br>
+           Description: Toilet paper.<br>
+         Cost: $3.99</p>
        </div>
-
      </div>
-     
-     <div class ="col-sm-12">
-      {% for item in items %}
-      <tr>
-        <td class="col-sm-8 col-md-6">
-          <div class="media">
-            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 18px; height: 18px;"> </a>
-            <div class="media-body">
-              <h4 class="media-heading"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h4>
+
+   <div class ="col-lg-3"></div>
+   <div class ="col-lg-3">
+     {% for item in items %}
+     <tr>
+      <td class="col-md-3">
+        <div class="media">
+          <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 72px; height: 72px;"> </a>
+          <div class="media-body">
+            <h6 class="media-heading text-right"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h6>
               <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
             </div>
           </div>
         </td>
+        <td class="text-right"><strong>Unit Price: ${{item.price}}</strong></td><br>
+        <td class="text-right"><strong>Quantity: {{item.quantity}}</strong></td>
       </tr>
       {% endfor %}
     </div>
-    <div class ="col-sm-12">
-      <h3>Unit Price: $3.99</h3>
-      <h4>Quantity: 2</h4>
-      <button class="check-btn">Checkout!</button>
-    </div>
   </div>
+    <button class="check-btn" style="float: right;">Checkout!</button>
+  
+</div>
+</div>
 </div>
 </div>
 
