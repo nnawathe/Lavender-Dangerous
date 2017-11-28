@@ -54,21 +54,29 @@ def cart(cart):
     )
 
 def user(request):
-
-    temp = []
-    items = ShoppingCart.objects.filter(user=request.user)
-    if items != None:
-        for item in items:
-            item=item.product
-            temp.append(item)
+    if request.user.is_authenticated:
+        temp = []
+        items = ShoppingCart.objects.filter(user=request.user)
+        if items != None:
+            for item in items:
+                item=item.product
+                temp.append(item)
+        else:
+            items=None
+            
+        reqs = Request.objects.filter(user=request.user)
+    
+        return render(
+            request,
+            'user.html',
+            context={'items': temp,'reqs':reqs}
+        )
     else:
-        items=None
-
-    return render(
+        return render(
         request,
-    	'user.html',
-        context={'items': temp}
-    )
+    	'index.html'
+        )
+        
     
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
