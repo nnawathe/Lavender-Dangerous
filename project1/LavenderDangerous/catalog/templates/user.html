@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+{% load static %}
+
 <h1 style="text-align:center"><strong>Welcome to your weBulk account, {{ user.first_name }}!</strong></h1>
 
 <div class="container-fluid">
@@ -22,34 +24,52 @@
         </div>
         <div class = "col-sm-12">
           <a href="product.html"><img src ="images/scott1000.png" /></a>
-    </div>
+        </div>
       </div>
       <div class = "col-sm-12 reqs">
         <h12><strong>Your Requests</strong></h8>
-        <div class = "col-sm-12">
-          <p><br><strong>You requested:</strong><br>
-     (1 days ago)<br>
-     Name: Toilet paper<br>
-     Description: Toilet paper.<br>
-     Cost: $3.99</p>
-        </div>
-      </div>
+          <div class = "col-sm-12">
+            <p><br><strong>You requested:</strong><br>
+             (1 days ago)<br>
+             Name: Toilet paper<br>
+             Description: Toilet paper.<br>
+           Cost: $3.99</p>
+         </div>
+       </div>
 
+     </div>
+     
+     <div class ="col-sm-12">
+      {% for item in items %}
+      <tr>
+        <td class="col-sm-8 col-md-6">
+          <div class="media">
+            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 72px; height: 72px;"> </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h4>
+              <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+            </div>
+          </div>
+        </td>
+        <td class="col-sm-1 col-md-1" style="text-align: center">
+          <input type="text" class="form-control" id="" value="1">
+        </td>
+        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
+        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
+        <td class="col-sm-1 col-md-1">
+          <button type="button" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove"></span> Remove
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
     </div>
-    <div class= "col-sm-3 cart">
-      <h2>Items in Cart</h2>
-      <div class ="col-sm-12 prod">
-        <h2>Scott 1000 Toilet Paper</h2>
-      </div>
-      <div class = "col-sm-12">
-        <img src ="images/scott1000.png" />
+    <div class ="col-sm-12">
+      <h3>Unit Price: $3.99</h3>
+      <h4>Quantity: 2</h4>
+      <button class="check-btn">Checkout!</button>
+    </div>
   </div>
-  <div class ="col-sm-12">
-    <h3>Unit Price: $3.99</h3>
-    <h4>Quantity: 2</h4>
-    <button class="check-btn">Checkout!</button>
-  </div>
-</div>
 </div>
 </div>
 
