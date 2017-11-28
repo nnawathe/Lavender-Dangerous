@@ -58,6 +58,20 @@
                     {% if not rvw %}
                     <p>No reviews yet</p>
                     {% endif %}
+                    <h4>Write a review:</h4>
+                    {% if user.is_authenticated %}
+                        <form action="" method="post">
+                              {% csrf_token %}
+                              <label>Enter Product Rating:&nbsp; </label>{{form.rating}}
+                              </br></br>
+                              <label style="vertical-align:top">Enter Review Text:&nbsp;</label>{{form.review_text}}
+                              <br>
+
+                              <input type="submit" value="Submit">
+                            </form>
+                    {% else %}
+                        <p>Sign in to write review</p>
+                    {% endif %}
 				</div>
 			</div>
 		</div>

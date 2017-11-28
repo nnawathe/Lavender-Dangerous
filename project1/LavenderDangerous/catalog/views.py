@@ -17,13 +17,32 @@ def index(index):
 class ProductListView(generic.ListView):
     model = Product
 
+from .forms import SubmitReviewForm
 class ProductDetailView(generic.DetailView):
     model = Product
 
     def get_context_data(self, **kwargs):
+        form = SubmitReviewForm()
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         context['rvw'] = Review.objects.filter(product_id=self.kwargs['pk']).all()
+        context['form'] = form
         return context
+        
+    def post(self, request, *args, **kwargs):
+        self.object=self.get_object()
+        form = SubmitReviewForm(self.request.POST)
+         # Check if the form is valid:
+        if form.is_valid():
+             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            rting = form.cleaned_data['rating']
+            text = form.cleaned_data['review_text']
+            prod = Product.objects.get(id=self.kwargs['pk'])
+            new_entry = Review(user=self.request.user,product=prod,rating=rting,review_text=text)
+            new_entry.save()
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['rvw'] = Review.objects.filter(product_id=self.kwargs['pk']).all()
+        context['form'] = form
+        return self.render_to_response(context=context)
 
 def cart(cart):
     temp = []
@@ -76,11 +95,7 @@ def user(request):
         request,
     	'index.html'
         )
-        
-    
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+
 
 from .forms import SubmitRequestForm
 
@@ -104,16 +119,6 @@ def requests(request):
     	'requests.html',
     	context={'num_requests':num_requests, 'rquests': rquests, 'form':form}
     )
-
-
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Request
-
-class RequestCreate(CreateView):
-    model = Request
-    fields = '__all__'
-
 
 def faq(faq):
      return render(
