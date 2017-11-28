@@ -110,7 +110,7 @@ class ShoppingCart(models.Model):
     A typical class defining a model, derived from the Model class.
     """
     user = models.ForeignKey(User, default=None)
-    product = models.OneToOneField(Product, default=None, blank=True)
+    product = models.ForeignKey(Product, default=None, blank=True)
     quantity = models.IntegerField(default=0)
 
     # Metadata
