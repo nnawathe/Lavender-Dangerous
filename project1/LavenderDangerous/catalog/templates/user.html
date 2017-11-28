@@ -44,22 +44,12 @@
       <tr>
         <td class="col-sm-8 col-md-6">
           <div class="media">
-            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 72px; height: 72px;"> </a>
+            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 18px; height: 18px;"> </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h4>
               <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
             </div>
           </div>
-        </td>
-        <td class="col-sm-1 col-md-1" style="text-align: center">
-          <input type="text" class="form-control" id="" value="1">
-        </td>
-        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
-        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
-        <td class="col-sm-1 col-md-1">
-          <button type="button" class="btn btn-danger">
-            <span class="glyphicon glyphicon-remove"></span> Remove
-          </button>
         </td>
       </tr>
       {% endfor %}
