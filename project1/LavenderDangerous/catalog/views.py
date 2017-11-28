@@ -53,21 +53,10 @@ def cart(cart):
         context={'items': temp, 'subtotal': subtotal, 'total': total, 'shipping': shipping}
     )
 
-def user(request):
-
-    temp = []
-    items = ShoppingCart.objects.filter(user=request.user)
-    if items != None:
-        for item in items:
-            item=item.product
-            temp.append(item)
-    else:
-        items=None
-
+def user(user):
     return render(
-        request,
-    	'user.html',
-        context={'items': temp}
+        user,
+    	'user.html'
     )
     
 from django.shortcuts import get_object_or_404
