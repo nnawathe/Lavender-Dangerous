@@ -19,11 +19,37 @@
     <div class = "col-lg-3 reqs">
       <h12><strong>Your Requests</strong></h12>
         <div class = "col-sm-12">
+<<<<<<< HEAD
           <p><br><strong>You requested:</strong><br>
            (1 days ago)<br>
            Name: Toilet paper<br>
            Description: Toilet paper.<br>
          Cost: $3.99</p>
+=======
+          <a href="product.html"><img src ="images/scott1000.png" /></a>
+        </div>
+      </div>
+      <div class = "col-sm-12 reqs">
+        <h12><strong>Your Requests</strong></h8>
+          <div class = "col-sm-12">
+            {% if user.is_authenticated %}
+    {{user.first_name}}
+    {% for r in rquests %}
+    <p><strong>Votes: {{r.popularity}}</strong><br>
+           Request for <strong>{{r.request_title}}</strong><br>
+               {{r.request_text}}
+    </p>
+    {% endfor %}
+    <h1>imin<h1>
+    
+    {% else %}
+    <p>Please login to see your requests</p>
+    {% endif %}
+
+
+         
+         </div>
+>>>>>>> 3b536f8c2bd3a5c51e6a69d2506f66259c39c869
        </div>
      </div>
 
