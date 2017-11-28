@@ -16,20 +16,18 @@
     </div>
 	
 	<div class="col-sm-3 req-title">
+    {% if user.is_authenticated %}
     <form action="" method="post">
       {% csrf_token %}
     <p><br>Item Info</p>
-      <label for="product">Product Name:</label>
-      <input type="text" class="form-control" id="product">
-      <br>
-
-      <label for="description">Description:</label>
-      <input type="text" class="form-control" id="description">
+      {{form}}
       <br>
 
       <input type="submit" value="Submit">
     </form>
-
+    {% else %}
+    <p>Please login to submit request</p>
+    {% endif %}
     <h3><br>Current Requests:</h3>
     {% for r in rquests %}
     <p><strong>Votes: {{r.popularity}}</strong><br>
