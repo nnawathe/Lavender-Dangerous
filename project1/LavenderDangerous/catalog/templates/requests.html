@@ -2,33 +2,32 @@
 
 {% block content %}
 <h1><strong>Requests</strong></h1>
-
-<p>Requests received:</p>
-<ul>
-	<li><strong>Number of requests: </strong>{{num_requests}}</li>
-</ul>
-
+</br>
 <div class="container-fluid" id="request-body">
   <div class="row">
 
-    <div class="col-sm-12 req-title">
+    <div class="col-sm-12 req-title" style="border:1px solid">
       <h3>Submit your requests here!</h3>
-    </div>
-	
-	<div class="col-sm-3 req-title">
-    {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
     <form action="" method="post">
       {% csrf_token %}
-    <p><br>Item Info</p>
-      {{form}}
+    <p><b>Item Info</b></p>
+      <label>Enter Request Title:&nbsp; </label>{{form.product_name}}
+      </br></br>
+      <label style="vertical-align:top">Enter Request Description:&nbsp;</label>{{form.description}}
       <br>
 
       <input type="submit" value="Submit">
     </form>
+    </br>
     {% else %}
     <p>Please login to submit request</p>
     {% endif %}
-    <h3><br>Current Requests:</h3>
+    </div>
+	
+	<div class="col-sm-12 req-title">
+    
+    <h3><br>There are currently {{num_requests}} submitted requests</h3>
     {% for r in rquests %}
     <p><strong>Votes: {{r.popularity}}</strong><br>
     		   Request for <strong>{{r.request_title}}</strong> from <strong>{{r.user.first_name}}</strong><br><br>
