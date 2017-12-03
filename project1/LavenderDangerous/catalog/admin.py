@@ -5,8 +5,8 @@ from .models import Product, Category, Profile, ShoppingCart, Review, Request
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'id', 'quantity', 'description', 'display_category', 'image')
-    fields = ['name', 'price', 'id', 'quantity', 'description', 'category', 'image']
+    list_display = ('name', 'price', 'quantity', 'description', 'display_category', 'image')
+    fields = ['name', 'price', 'quantity', 'description', 'category', 'image']
 
 
 

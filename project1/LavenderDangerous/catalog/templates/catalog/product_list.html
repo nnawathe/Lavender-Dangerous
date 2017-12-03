@@ -6,7 +6,14 @@
 <div class="container-fluid">
 	<div class="main-row row">
 		<div class="col-sm-3 prod-sidebar" style="border-right:solid 1px;">
-			<h5>Filter Products</h5>
+			<h5>Filter Products by Category</h5>
+            <form>
+            {% for cat in categories %}
+                <label>{{cat}}</label>&nbsp;<input type="checkbox" name="checks[]" value="{{cat}}" /></br>
+            {% endfor %}
+                <button>Filter</button>
+            </form>
+
 		</div>
 		<div class="col-sm-9">
 			 <h1>Products</h1>

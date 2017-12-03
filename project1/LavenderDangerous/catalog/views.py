@@ -16,6 +16,11 @@ class ProductListView(generic.ListView):
     def get_queryset(self):
         search = self.request.GET.get('q','')
         return Product.objects.filter(name__icontains=search)
+        
+    def get_context_data(self, **kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 from .forms import SubmitReviewForm
 class ProductDetailView(generic.DetailView):
