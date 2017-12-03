@@ -11,11 +11,11 @@ def index(index):
     	'index.html'
     )
 
-# class ProductListView(generic.ListView):
-#     pass
-
 class ProductListView(generic.ListView):
     model = Product
+    def get_queryset(self):
+        search = self.request.GET.get('q','')
+        return Product.objects.filter(name__icontains=search)
 
 from .forms import SubmitReviewForm
 class ProductDetailView(generic.DetailView):
