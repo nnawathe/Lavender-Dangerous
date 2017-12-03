@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
 	<div class="main-row row">
-		<div class="col-sm-3 prod-sidebar">
+		<div class="col-sm-3 prod-sidebar" style="border-right:solid 1px;">
 			<h5>Filter Products</h5>
 		</div>
 		<div class="col-sm-9">
@@ -15,9 +15,10 @@
             <ul>
 
             {% for products in product_list %}
-            <li>
+            <li style="list-style:none">
                 <img width="150px" height = "150px" src="{% static products.image %}" />
                 <a href="{{ products.get_absolute_url }}">{{ products.name }}</a> <b>{{products.price}}</b>
+            </li>
             {% endfor %}
 
             </ul>

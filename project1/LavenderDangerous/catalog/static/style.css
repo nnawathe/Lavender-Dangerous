@@ -1,3 +1,21 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
 li {
 	background-color: rgba(62, 62, 182);
 }
@@ -12,11 +30,14 @@ li {
 
 #faq-body{
 	padding-left: 5em;
-	padding-top: 4em;
 }
 
 #request-body{
 	padding-left: 5em;
-	padding-top: 4em;
 }
 
+.container-fluid{
+    padding-top:2em;
+    overflow:auto;
+    padding-bottom:2em;
+}
