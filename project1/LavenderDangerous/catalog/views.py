@@ -13,15 +13,27 @@ def index(index):
 
 class ProductListView(generic.ListView):
     model = Product
+    checks = []
+    search = ''
     def get_queryset(self):
-        search = self.request.GET.get('q','')
-        return Product.objects.filter(name__icontains=search)
+        self.search = self.request.GET.get('q','')
+        if len(self.checks)==0:
+            return Product.objects.filter(name__icontains=self.search)
+        else:
+            return Product.objects.filter(category__in=self.checks).all().filter(name__icontains=self.search)
         
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['search'] = self.search
+        context['checks'] = self.checks
+        print(self.checks)
         return context
-
+        
+    def post(self, request, *args,**kwargs):
+        self.checks = request.POST.getlist('checks[]')
+        return generic.ListView.get(self, request, *args, **kwargs)
+        
 from .forms import SubmitReviewForm
 class ProductDetailView(generic.DetailView):
     model = Product

@@ -6,13 +6,24 @@
 <div class="container-fluid">
 	<div class="main-row row">
 		<div class="col-sm-3 prod-sidebar" style="border-right:solid 1px;">
-			<h5>Filter Products by Category</h5>
-            <form>
+			<h5>Filter Products</h5>
+  
+            {% if search %}
+             <p>Search query: {{search}}</p>
+             {% endif %}
+            <form action="" method="post">
+            {% csrf_token %}
             {% for cat in categories %}
-                <label>{{cat}}</label>&nbsp;<input type="checkbox" name="checks[]" value="{{cat}}" /></br>
+                {% if cat.id|stringformat:"i" in checks %}
+                <label>{{cat}}</label>&nbsp;<input type="checkbox" name="checks[]" value="{{cat.id}}" checked="checked" /></br>
+                {% else %}
+                <label>{{cat}}</label>&nbsp;<input type="checkbox" name="checks[]" value="{{cat.id}}" /></br>
+                {% endif %}
             {% endfor %}
-                <button>Filter</button>
+                <input type="submit" value="Filter">
             </form>
+            </br>
+            <button onclick="return clearSearch()">Clear All</button>
 
 		</div>
 		<div class="col-sm-9">
