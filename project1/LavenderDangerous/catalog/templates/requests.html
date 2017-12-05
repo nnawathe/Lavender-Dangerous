@@ -4,17 +4,19 @@
 
 <div class="container-fluid" id="request-body">
   <div class="row">
+   <div class="col-sm-12 req-title">
 <h3><strong>Requests</strong></h3>
 </br>
-    <div class="col-sm-12 req-title" style="border:1px solid">
+</div>
+    <div class="col-sm-12 req-title">
       <h3>Submit your requests here!</h3>
       {% if user.is_authenticated %}
     <form action="" method="post">
       {% csrf_token %}
     <p><b>Item Info</b></p>
-      <label>Enter Request Title:&nbsp; </label>{{form.product_name}}
+      <label>Enter Request Title:&nbsp; </label></br>{{form.product_name}}
       </br></br>
-      <label style="vertical-align:top">Enter Request Description:&nbsp;</label>{{form.description}}
+      <label style="vertical-align:top">Enter Request Description:&nbsp;</label></br>{{form.description}}
       <br>
 
       <input type="submit" value="Submit">
