@@ -55,7 +55,7 @@
     {% if user.is_authenticated %}
     <li class=list-inline-item><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info btn-lg" style="background-color:#00334d">Logout</a></li>
     <li>
-     <li style="color:white">Hello, {{ user.first_name }}!</li>
+     <li style="color:white; text-align:right">Hello, {{ user.first_name }}!</li>
  </li>
     {% else %}
     <li class=list-inline-item><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info btn-lg" style="background-color:#00334d">Login</a></li>
