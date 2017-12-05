@@ -29,13 +29,13 @@
 <body>
 <div id="wrap">
 <!--Sticky navbar-->
-<nav class="navbar sticky-top navbar-light" style="background-color: cornflowerblue">
+<nav class="navbar sticky-top navbar-light" style="background-color: #0088cc">
   <a class="navbar-brand" href="{% url 'index' %}">
     <img src="{% static 'images\logo.png'%}" width="194" height="74" class="d-inline-block align-top" alt="" width=60 height=40>
   </a>
 
     <!--Search Bar-->
-    <nav class="navbar navbar-light" style="background-color: cornflowerblue">
+    <nav class="navbar navbar-light" style="background-color: #0088cc">
   <a class="navbar-brand"></a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" id="search_main" type="text" placeholder="Search" aria-label="Search" style="width:700px">
@@ -44,28 +44,28 @@
 </nav>
 
     <ul class="navbar-right list-inline">
-    <li class="list-inline-item"><a href="{% url 'cart' %}" class="btn btn-info btn-lg">
+    <li class="list-inline-item"><a href="{% url 'cart' %}" class="btn btn-info btn-lg" style="background-color:#00334d">
           <span class="fa fa-shopping-cart"></span>
         </a></li>
         {% if user.is_authenticated %}
-    <li class=list-inline-item><a href="{% url 'user' %}" class="btn btn-info btn-lg">
+    <li class=list-inline-item><a href="{% url 'user' %}" class="btn btn-info btn-lg" style="background-color:#00334d">
           <span class="fa fa-user"></span> Account
         </a></li>
         {% endif %}
     {% if user.is_authenticated %}
-    <li class=list-inline-item><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info btn-lg">Logout</a></li>
+    <li class=list-inline-item><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info btn-lg" style="background-color:#00334d">Logout</a></li>
     <li>
-     <li>Hi {{ user.first_name }}</li>
+     <li style="color:white">Hello, {{ user.first_name }}!</li>
  </li>
     {% else %}
-    <li class=list-inline-item><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info btn-lg">Login</a></li>
+    <li class=list-inline-item><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info btn-lg" style="background-color:#00334d">Login</a></li>
     {% endif %} 
 
         </ul>
 
 
 </nav>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rebeccapurple">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #333;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
