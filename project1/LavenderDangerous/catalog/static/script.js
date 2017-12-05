@@ -1,5 +1,5 @@
 function searchURL(){
-    window.location.href = "?q="+document.getElementById("search_main").value;
+    window.location.href = "/catalog/products?q="+document.getElementById("search_main").value;
     return false;
 }
 

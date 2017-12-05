@@ -27,7 +27,6 @@ class ProductListView(generic.ListView):
         context['categories'] = Category.objects.all()
         context['search'] = self.search
         context['checks'] = self.checks
-        print(self.checks)
         return context
         
     def post(self, request, *args,**kwargs):
