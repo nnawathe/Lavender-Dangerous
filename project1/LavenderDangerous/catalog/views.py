@@ -72,7 +72,6 @@ def cart(cart):
                 item=item.product
                 temp.append(item)
                 subtotal += item.price*ShoppingCart.objects.get(user=cart.user,product=item).quantity
-                print(subtotal)
             shipping=3.99
             subtotal = round(subtotal, 2)
             total=shipping+subtotal

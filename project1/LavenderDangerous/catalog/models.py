@@ -134,18 +134,22 @@ class ShoppingCart(models.Model):
         return self.product.name
 
     def display_genre(self):
-        """
-        Creates a string for the Genre. This is required to display genre in Admin.
-        """
         return ', '.join([ product.name for product in self.product.all()[:3] ])
+
     display_product.short_description = 'Products'
 
     def display_user(self):
-        """
-        Creates a string for the Genre. This is required to display genre in Admin.
-        """
         return self.user.first_name
+
     display_user.short_description = 'User'
+
+    def display_quantity(self):
+        """
+        Creates a string for quantity of a product
+        """
+        return self.quantity
+
+    number_items = property(display_quantity)
 
 
 class Review(models.Model):
