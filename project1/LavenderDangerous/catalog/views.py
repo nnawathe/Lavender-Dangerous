@@ -60,6 +60,8 @@ class ProductDetailView(generic.DetailView):
         context['form'] = form
         return self.render_to_response(context=context)
 
+from math import floor
+
 def cart(cart):
     temp = []
     if cart.user.is_authenticated:
@@ -70,7 +72,9 @@ def cart(cart):
                 item=item.product
                 temp.append(item)
                 subtotal += item.price*ShoppingCart.objects.get(user=cart.user,product=item).quantity
+                print(subtotal)
             shipping=3.99
+            subtotal = round(subtotal, 2)
             total=shipping+subtotal
         else:
             subtotal=0
