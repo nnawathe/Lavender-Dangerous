@@ -20,8 +20,12 @@
 				<div class="col-sm-9">
 					<p>{{product.description}}</p>
 					<h5>Unit Price: {{product.price}}</h5>
+                    
+                    <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="cart" name="cart">
 					<label>Quantity:</label>
-					<select class="prod-quantity">
+					<select class="prod-quantity" name="quant">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -32,7 +36,12 @@
 						<option value="8">8</option>
 						<option value="9">9</option>
 					</select>
-					<button class="buy-btn">Add to Cart</button>
+                    {% if user.is_authenticated %}
+					<button type="submit" class="buy-btn">Add to Cart</button>&nbsp;{{added}}
+                    {% else %}
+                    <button class="buy-btn" disabled>Login to enable cart</button>
+                    {% endif %}
+                    </form>
 				</div>
 				<div class="col-sm-12 prod-reviews">
 					<h3>Reviews</h3>
@@ -62,6 +71,7 @@
                     {% if user.is_authenticated %}
                         <form action="" method="post">
                               {% csrf_token %}
+                              <input type="hidden" value="review" name="review">
                               <label>Enter Product Rating:&nbsp; </label>{{form.rating}}
                               </br></br>
                               <label style="vertical-align:top">Enter Review Text:&nbsp;</label>{{form.review_text}}

@@ -48,16 +48,28 @@ class ProductDetailView(generic.DetailView):
         
     def post(self, request, *args, **kwargs):
         self.object=self.get_object()
-        form = SubmitReviewForm(self.request.POST)
-         # Check if the form is valid:
-        if form.is_valid():
-             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-            rting = form.cleaned_data['rating']
-            text = form.cleaned_data['review_text']
-            prod = Product.objects.get(id=self.kwargs['pk'])
-            new_entry = Review(user=self.request.user,product=prod,rating=rting,review_text=text)
-            new_entry.save()
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context['added'] = ""
+        if request.POST.get('review') == 'review':
+            form = SubmitReviewForm(self.request.POST)
+             # Check if the form is valid:
+            if form.is_valid():
+                 # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+                rting = form.cleaned_data['rating']
+                text = form.cleaned_data['review_text']
+                prod = Product.objects.get(id=self.kwargs['pk'])
+                new_entry = Review(user=self.request.user,product=prod,rating=rting,review_text=text)
+                new_entry.save()
+        else:
+            form = SubmitReviewForm()
+            prod = Product.objects.get(id=self.kwargs['pk'])
+            inCart = ShoppingCart.objects.filter(user=request.user,product=prod)
+            if not inCart:
+                s = ShoppingCart(user=request.user,product=prod,quantity=int(request.POST.get('quant')))
+                s.save()
+                context['added'] = "Added to cart"
+            else:
+                context['added'] = "Already in cart"
         context['rvw'] = Review.objects.filter(product_id=self.kwargs['pk']).all()
         context['form'] = form
         return self.render_to_response(context=context)
