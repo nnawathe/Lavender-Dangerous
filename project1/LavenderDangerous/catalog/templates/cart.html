@@ -25,6 +25,8 @@
                     
                     {% for item in items %}
                     <tr>
+                        <form action="" method="post">
+                        {% csrf_token %}
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{% static item.image%}" style="width: 72px; height: 72px;"> </a>
@@ -34,14 +36,29 @@
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="text" class="form-control" id="" value="1">
+                        <input type="hidden" value="{{ item }}" name="itemchange">
+                        <select class="prod-quantity" name="quant" onchange="this.form.submit()">
+                        {% for i in range %}
+                        {% if i == quants|get_item:item %}
+						<option value="{{i}}" selected>{{i}}</option>
+                        {% else %}
+                        <option value="{{i}}">{{i}}</option>
+                        {% endif %}
+                        {% endfor %}
+                        </select>
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{% multiply item.price quants|get_item:item %}</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        </form>
+                        <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ item }}" name="itemchange">
+                        <input type="hidden" value="rm" name="rm">
+                        <button type="button" class="btn btn-danger" onclick="this.form.submit()">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
+                        </form>
                     </tr>
                     {% endfor %}
                     <tr>

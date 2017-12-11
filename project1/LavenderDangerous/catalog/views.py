@@ -4,6 +4,7 @@ from django.views import generic
 
 from django.contrib.auth.models import User
 from .models import Product, Profile, ShoppingCart, Request, Review, Category
+import re
 
 def index(index):
     return render(
@@ -17,6 +18,7 @@ class ProductListView(generic.ListView):
     search = ''
     def get_queryset(self):
         self.search = self.request.GET.get('q','')
+        self.search =re.escape(self.search)
         if len(self.checks)==0:
             return Product.objects.filter(name__icontains=self.search)
         else:
@@ -61,20 +63,37 @@ class ProductDetailView(generic.DetailView):
         return self.render_to_response(context=context)
 
 from math import floor
+from django.template.defaulttags import register
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+    
+@register.simple_tag()
+def multiply(x, y, *args, **kwargs):
+    return x*y
 
-def cart(cart):
+def cart(request):
+    if request.method == "POST":
+        item = Product.objects.get(name = request.POST.get('itemchange'))
+        if request.POST.get('rm') == 'rm':
+            ShoppingCart.objects.filter(user=request.user,product=item).delete()
+        else:
+            ShoppingCart.objects.filter(user=request.user,product=item).update(quantity=int(request.POST.get('quant')))
     temp = []
-    if cart.user.is_authenticated:
-        items = ShoppingCart.objects.filter(user=cart.user)
+    quants = {}
+    if request.user.is_authenticated:
+        items = ShoppingCart.objects.filter(user=request.user)
         if items != None:
             subtotal = 0
             for item in items:
                 item=item.product
                 temp.append(item)
-                subtotal += item.price*ShoppingCart.objects.get(user=cart.user,product=item).quantity
+                q = ShoppingCart.objects.get(user=request.user,product=item).quantity
+                subtotal += item.price*q
+                quants[item] = q
             shipping=3.99
             subtotal = round(subtotal, 2)
-            total=shipping+subtotal
+            total=round((shipping+subtotal),2)
         else:
             subtotal=0
             shipping=0
@@ -86,9 +105,9 @@ def cart(cart):
         total=0
 
     return render(
-        cart,
+        request,
         'cart.html',
-        context={'items': temp, 'subtotal': subtotal, 'total': total, 'shipping': shipping}
+        context={'items': temp, 'quants': quants, 'subtotal': subtotal, 'total': total, 'shipping': shipping, 'range': range(1,10)}
     )
 
 def user(request):
