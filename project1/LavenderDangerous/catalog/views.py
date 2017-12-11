@@ -151,15 +151,20 @@ from .forms import SubmitRequestForm
 
 def requests(request):
     if request.method == 'POST':
-        form = SubmitRequestForm(request.POST)
-     # Check if the form is valid:
-        if form.is_valid():
-         # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-            title = form.cleaned_data['product_name']
-            text = form.cleaned_data['description']
-            pop = 0;
-            new_entry = Request(user=request.user,request_title=title,request_text=text,popularity=pop)
-            new_entry.save()
+        if request.POST.get('pop') == 'pop':
+            req = Request.objects.filter(request_title=request.POST.get('rtitle')).first()
+            req.popularity+=1
+            req.save()
+        else:
+            form = SubmitRequestForm(request.POST)
+         # Check if the form is valid:
+            if form.is_valid():
+             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+                title = form.cleaned_data['product_name']
+                text = form.cleaned_data['description']
+                pop = 0;
+                new_entry = Request(user=request.user,request_title=title,request_text=text,popularity=pop)
+                new_entry.save()
     form = SubmitRequestForm()
     num_requests=Request.objects.count()
     rquests=Request.objects.order_by('-popularity').all()

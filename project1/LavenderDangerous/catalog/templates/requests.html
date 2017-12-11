@@ -33,7 +33,15 @@
     {% for r in rquests %}
     <p><strong>Votes: {{r.popularity}}</strong><br>
     		   Request for <strong>{{r.request_title}}</strong> from <strong>{{r.user.first_name}}</strong><br><br>
-               {{r.request_text}}
+               {{r.request_text}}</br>
+               {% if user.is_authenticated %}
+               <form action="" method="post">
+               {% csrf_token %}
+                <input type="hidden" value="pop" name="pop">
+                <input type="hidden" value="{{r.request_title}}" name="rtitle">
+                <button type="submit" value=""><span class="fa fa-thumbs-o-up"></span></button>
+               </form>
+               {% endif %}
     </p>
     {% endfor %}
       <!-- (13 days ago)<br>
