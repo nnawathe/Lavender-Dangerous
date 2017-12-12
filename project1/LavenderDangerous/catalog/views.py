@@ -19,6 +19,7 @@ class ProductListView(generic.ListView):
     def get_queryset(self):
         self.search = self.request.GET.get('q','')
         self.search =re.escape(self.search)
+        self.search = self.search.replace("\ "," ")
         if len(self.checks)==0:
             return Product.objects.filter(name__icontains=self.search)
         else:
