@@ -72,9 +72,9 @@
                         <form action="" method="post">
                               {% csrf_token %}
                               <input type="hidden" value="review" name="review">
-                              <label>Enter Product Rating:&nbsp; </label>{{form.rating}}
+                              <label>Enter Product Rating:&nbsp; </label></br>{{form.rating}}
                               </br></br>
-                              <label style="vertical-align:top">Enter Review Text:&nbsp;</label>{{form.review_text}}
+                              <label style="vertical-align:top">Enter Review Text:&nbsp;</label></br>{{form.review_text}}
                               <br>
 
                               <input type="submit" value="Submit">
